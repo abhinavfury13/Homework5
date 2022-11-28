@@ -1,6 +1,6 @@
 __Abhinav Ramnath__
 
-<h1>Homework 4</h1>
+<h1>Homework 5</h1>
 
 <h2>Steps to compile, test and run:</h2>
 
@@ -13,9 +13,34 @@ Modify the build.sbt file to include scalatest by adding the following lines to 
 and load the project with these new settings
 
 <h2>Implementation Details</h2>
-This is a language built to define classes, abstract classes, interfaces and showcase inheritance and overriding, exception handling and branching statements.
+This is a language built to define classes, abstract classes, interfaces and showcase inheritance and overriding, exception handling and branching statements and partial evaluation.
 
 I've implemented a model where the classes, interfaces and abstract classes are singleton (all objects of this class have the same reference)
+
+<h2>Details on Partial Evaluation</h2>
+Partial Evaluation is carried out by using a monadic function map and transformers that simplify Logic Gate Expressions <br>
+
+<h3>map(Monadic Function)</h3>
+It is the function that applies the transformers on a given partial expression <br>
+
+<strong>Definition</strong> - def map(expr: LogicGates, f: LogicGates => LogicGates| Boolean): LogicGates| Boolean <br>
+<strong>Usage</strong> - map(AND(OR(true,false),true)), simplifyAND) //here simplifyAND is a transformer function that optimizes the AND Gate<br>
+
+<h3> Transformer Functions(Optimizers) </h3>
+They are all defined as function literals with the syntax LogicGates => LogicGates|Boolean but vary according to the gate that they optimize <br>
+
+I shall show simplifyAND here as an example: <br>
+  private val simplifyAND: LogicGates => LogicGates | Boolean = <br>
+    (expression: LogicGates) => expression match <br>
+      case AND(false, _) => false <br>
+      case AND(_, false) => false <br>
+      case AND(true, o1) => o1 <br>
+      case AND(o1, true) => o1 <br>
+      case AND(o1, o2) => AND(o1, o2) <br>
+      
+//Here if any of the values are false, it evaluates to false, if any argument is true, the value is the evaluation of the 2nd argument and if both are not defined it returns it as it is      
+
+
 
 <h2>IF</h2>
 This models the if statement that is present in all languages <br>
