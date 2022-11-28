@@ -29,6 +29,8 @@ It is the function that applies the transformers on a given partial expression <
 <h3> Transformer Functions(Optimizers) </h3>
 They are all defined as function literals with the syntax LogicGates => LogicGates|Boolean but vary according to the gate that they optimize <br>
 
+There are 4 transformer functions: simplifyAND, simplifyOR, simplifyNAND, simplifyNOR <br>
+
 I shall show simplifyAND here as an example: <br>
   private val simplifyAND: LogicGates => LogicGates | Boolean = <br>
     (expression: LogicGates) => expression match <br>
@@ -38,7 +40,7 @@ I shall show simplifyAND here as an example: <br>
       case AND(o1, true) => o1 <br>
       case AND(o1, o2) => AND(o1, o2) <br>
       
-//Here if any of the values are false, it evaluates to false, if any argument is true, the value is the evaluation of the 2nd argument and if both are not defined it returns it as it is      
+//Here if any of the values are false => it evaluates to false,<br> if any argument is true => the value is the evaluation of the 2nd argument <br> if both are not defined it returns it as it is      
 
 
 
