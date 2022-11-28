@@ -19,6 +19,7 @@ I've implemented a model where the classes, interfaces and abstract classes are 
 
 <h2>Details on Partial Evaluation</h2>
 Partial Evaluation is carried out by using a monadic function map and transformers that simplify Logic Gate Expressions <br>
+We use recursive application of map function with the specific transformer to simplify and optimize the expression <br>
 
 <h3>map(Monadic Function)</h3>
 It is the function that applies the transformers on a given partial expression <br>
