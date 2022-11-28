@@ -1,6 +1,6 @@
 __Abhinav Ramnath__
 
-<h1>Homework 3</h1>
+<h1>Homework 4</h1>
 
 <h2>Steps to compile, test and run:</h2>
 
@@ -13,13 +13,60 @@ Modify the build.sbt file to include scalatest by adding the following lines to 
 and load the project with these new settings
 
 <h2>Implementation Details</h2>
-This is a language built to define classes, abstract classes, interfaces and showcase inheritance and overriding.
+This is a language built to define classes, abstract classes, interfaces and showcase inheritance and overriding, exception handling and branching statements.
 
 I've implemented a model where the classes, interfaces and abstract classes are singleton (all objects of this class have the same reference)
 
+<h2>IF</h2>
+This models the if statement that is present in all languages <br>
+It uses call by name parameters for all arguments <br>
+<strong>Definition</strong> - IF(condition:=> Boolean, thenBlock :=> Unit, elseBlock :=>Unit) <br>
+<strong>Usage</strong> - IF({AND(true,false).eval},{//statements in then block},{//statement in else block}) <br>
+<em><strong>Note:We can have any number of nested if's</em></strong> <br><br>
+
+<h2>CatchException</h2>
+This is used to define the try catch blocks in the code <br>
+We use a stack to know if a current exception has occurred and evaluate statements based on the value in the stack <br>
+It uses call by name parameters for tryBlock and catchBlock arguments <br>
+<strong>Definition</strong> - CatchException(exceptionClassName: String, tryBlock :=> Unit, catchBlock :=>Unit) <br>
+<strong>Usage</strong> - CatchException("exceptionName",{//try block statements},{//catch block statements(will only get evaluated if exception is thrown)}) <br>
+<em><strong>Note:We can have any number of nested CatchException blocks, and exceptions thrown in inner blocks can be caught in outer blocks </em></strong> <br><br>
+
+<h2>Scope</h2>
+This is a modified version of scope which takes a call by name parameter, it binds a specific block of statements to a scope
+It uses call by name parameters for block argument
+<strong>Definition</strong> - Scope(scopeName: String, block :=> Unit) <br>
+<strong>Usage</strong> - Scope("scopeName",{//statements inside that scope}) <br>
+<em><strong>Note:We can have any number of nested scope's(definition in outer scopes will be visible in inner scopes)</em></strong> <br><br>
+
 <h2>ClassBuilder</h2>
 This is an enum that contains all the definitions for building classes and inheritance <br>
-It contains - ClassDef, AbstractClassDef, InterfaceDef, Constructo, Implements, InvokeMethod, Method, AbstractMethod, Field, Extends, Protected, Private and New Object
+It contains - ThrowException, ExceptionClassDef, ClassDef, AbstractClassDef, InterfaceDef, Constructo, Implements, InvokeMethod, Method, AbstractMethod, Field, Extends, Protected, Private and New Object
+
+<h2>ExceptionClassDef</h2>
+ This is used to define an exception class.
+ 
+ <strong>Definition</strong> - ExceptionClassDef(exceptionClassName: String)<br>
+ <strong>Usage</strong> - ExceptionClassDef("MyException") <br>
+ We store the exceptions in an exceptionClassMap along with reason<br>
+ exceptionClassMap = exceptionClassName -> reason (Eg. "RunTimeException"-> "Divide by Zero") <br> 
+ 
+<h2>ThrowException</h2>
+ This is used throw an exception to stop the linear flow of control
+ 
+ <strong>Definition</strong> - ThrowException(exceptionClassName :String, reason: String)<br>
+ <strong>Usage</strong> - ThrowException("RunTimeException", "Divide by Zero") <br>
+ We store the exceptions in an exceptionClassMap along with reason<br>
+ exceptionClassMap = exceptionClassName -> reason (Eg. "RunTimeException"-> "Divide by Zero") <br> 
+ 
+ <h2>Implements</h2>
+ This is used to specify the interfaces that are implemented by class. We specify this during ClassDef or AbstractClassDef
+ <em><strong>Note: Interfaces can extend another interface but cannot implement another interface</em></strong><br>
+ 
+ <strong>Definition</strong> - Implements(interfaces :String*) (var args since we can implement multiple interfaces)<br>
+ <strong>Usage</strong> - AbstractClassDef("classA", Implements("interfaceB", "interface C")) <br>
+ We store the implements relations in an implementsMap<br>
+ implementsMap: String->Set[String] Eg. classA -> (interfaceB, interfaceC) <br> 
 
 <h2>ClassDef</h2>
 This is defined as a case that takes 2 paramaters, the className and var args(or Seq) of type ClassBuilder <br>
