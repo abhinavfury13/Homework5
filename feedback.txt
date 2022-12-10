@@ -1,0 +1,29 @@
+Maximum grade for this homework is 10%.
+
+1. Only some basic expression language is implemented
+Marks deducted: 0%
+
+2. Number of `var` used: 0
+Marks deducted: 0%
+
+3. Non-spelling-related problem reported by IntelliJ code analysis and inspection tool
+Marks deducted: 0%
+
+4. Less than five unit and/or integration tests that show how your implemented features work: up to 5% lost;
+Minimum 5 Test cases: No
+Marks deducted: 1%
+Comments: Only first 4 unit tests pertain to HW5
+
+5. Missing comments and explanations from the program: up to 5% lost;
+Marks deducted: 0%
+
+6. No instructions in your README.md on how to install and run your program: up to 5% lost;
+Marks deducted: 0%
+
+7. The program crashes without completing the core functionality or it is incorrect: up to 10% lost;
+Marks deducted: 0%
+
+8. Documentation exists but it is insufficient to understand how you assembled and deployed all language components: up to 8% lost;
+Marks deducted: 0%
+
+Marks for Homework 5: 9%
